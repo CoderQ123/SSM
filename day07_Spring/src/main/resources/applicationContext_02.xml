@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--外部引用，引用本对象外部对象-->
+    <bean id="user1" class="Bean.User">
+        <property name="name" value="CoderQ"></property>
+        <property name="age" value="22"></property>
+        <property name="addr" ref="addr1"></property>
+    </bean>
+    <bean id="user2" class="Bean.User">
+        <property name="name" value="CoderA"></property>
+        <property name="age" value="22"></property>
+        <property name="addr" ref="addr2"></property>
+    </bean>
+<!--    内部引用 -->
+    <bean id="user3" class="Bean.User">
+        <property name="name" value="CoderB"></property>
+        <property name="age" value="23"></property>
+        <property name="addr">
+<!--            由于该Bean对象只能自己使用,所以不需要id属性-->
+            <bean   class="Bean.Address">
+                <property name="address" value="tj"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="addr1" class="Bean.Address">
+        <property name="address" value="bj"></property>
+    </bean>
+</beans>

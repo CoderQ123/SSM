@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+<context:component-scan base-package="Controller,Advice"/>
+<!--    开启切面注解-->
+    <aop:aspectj-autoproxy/>
+
+<!--    替换业务只有页面跳转的handler方法-->
+    <mvc:view-controller path="/index" view-name="index"/>
+    <mvc:view-controller path="/" view-name="index"/>
+
+    <mvc:view-controller path="/UserPage" view-name="UserPage"/>
+    <mvc:view-controller path="/StudentPage" view-name="StudentPage"/>
+<!--当加入静态资源处理后，默认的支持注解handlerMapping和HandlerAdapter将不会生效，需手动添加-->
+    <mvc:annotation-driven/>
+<!--    静态资源处理器，-->
+    <mvc:default-servlet-handler/>
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="order" value="1"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="templateEngine">
+            <bean class="org.thymeleaf.spring5.SpringTemplateEngine">
+                <property name="templateResolver">
+                    <bean class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+
+                        <!-- 视图前缀 -->
+                        <property name="prefix" value="/WEB-INF/Pages/"/>
+
+                        <!-- 视图后缀 -->
+                        <property name="suffix" value=".html"/>
+                        <property name="templateMode" value="HTML5"/>
+                        <property name="characterEncoding" value="UTF-8" />
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+</beans>

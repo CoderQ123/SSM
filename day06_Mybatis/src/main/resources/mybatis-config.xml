@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    
+    <properties resource="JDBC.properties"></properties>
+    <settings>
+        <!--        配置日志信息输出为标准日志输入-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--        配置日志信息输出通过第三方日志框架slf4j-->
+        <!--        <setting name="logImpl" value="SLF4J"/>-->
+        <!--        是否开启驼峰命名自动映射，即从经典数据库列名 A_COLUMN 映射到经典 Java 属性名 aColumn-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--        开启嵌套映射映射
+                开启之后，resultMap中，只需要写id的映射即可
+        -->
+
+        <setting name="autoMappingBehavior" value="FULL"/>
+        <!--        开启延迟加载 -->
+        <!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+<!--        <setting name="aggressiveLazyLoading" value="false"/>-->
+<!--        <setting name="cacheEnabled" value="true"/>-->
+    </settings>
+<!--    <typeAliases>-->
+<!--        &lt;!&ndash;        mybatis会在包名下搜索需要的javaBean，-->
+<!--        在没有bean上面没有用注解时，默认使用bean首字母小写作为该bean的全类名-->
+<!--        有注解，则使用注解-->
+<!--        &ndash;&gt;-->
+<!--        <package name="Bean"/>-->
+<!--    </typeAliases>-->
+<!--    声明自定义类型处理器-->
+    <typeHandlers>
+        <typeHandler handler="TypeHandler.MyTypeHandler"></typeHandler>
+    </typeHandlers>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用的语言
+                 mysql  db2
+             -->
+            <property name="helperDialect" value="mysql"></property>
+            <!--  -->
+        </plugin>
+    </plugins>
+
+    <environments default="demo">
+        <environment id="demo">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        按照包扫描mapper.xml文件
+        要求：①mapper.xml文件和mapper接口最终编译在同一个包下
+             只需mapper.xml所在文件夹和mapper接口所在包同名即可
+             ②mapper.xml和mapper接口同名
+-->
+<!--        <package name="Mapper"/>-->
+        <mapper resource="Mapper/questionDetailMapper.xml"></mapper>
+        <mapper resource="Mapper/TestMapper.xml"></mapper>
+    </mappers>
+    
+</configuration>

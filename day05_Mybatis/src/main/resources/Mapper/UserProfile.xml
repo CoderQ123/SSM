@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.UserProfile">
+    <resultMap id="rmm" type="Bean.userProfile">
+        <id column="id" property="id"></id>
+        <collection property="qPD"
+                    column="device_id"
+                    select="Mapper.QuestionMapper.getAllByDeviceId"></collection>
+    </resultMap>
+    <select id="getUserProfile" resultMap="rmm">
+        select *
+        from user_profile where university in ('浙江大学','北京大学')
+    </select>
+    
+<!--    resultType  表  -》 对象 采用默认映射关系，即相同列名和驼峰原则
+        resultMap 表 =》 对象  采用自定义映射关系
+-->
+    <select id="getUserByDeviceId" resultType="Bean.userProfile">
+        select  *
+        from  user_profile
+        where device_id = #{arg0}
+    </select>
+</mapper>

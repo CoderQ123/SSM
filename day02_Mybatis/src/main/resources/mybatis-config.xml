@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    environments 来配置连接数据库的信息
+        用来适配多种开发场景，测试，开发
+-->
+
+    <environments default="development">
+        <environment id="development">
+<!--            JDBC :mybatis自动开启事务-->
+<!--            MANAGED：mybatis不开启事务,后期spring管理事务的时候，此选项应该设置MANAGED-->
+            <transactionManager type="JDBC"/>
+<!--            UNPOOLED/POOLED 是否需要连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/exercise?serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--
+    Mappers用来配置和引入外部编写Sql语句xml文件
+
+-->
+    <mappers>
+        <mapper resource="./Mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>

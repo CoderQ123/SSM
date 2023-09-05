@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="soldierMapper">
+<!--    查询-->
+    <select id="getAll" resultType="Pojo.soldier">
+        select soldier_id as soldierId,soldier_name soldierName,soldier_weapon soldierWeapon from t_soldier
+    </select>
+<!--    插入-->
+    <insert id="addSoldier" parameterType="Pojo.soldier">
+        insert into t_soldier(soldier_name,soldier_weapon) values(#{soldierName},#{soldierWeapon})
+    </insert>
+
+    <delete id="deleteSoldier" parameterType="java.lang.Integer">
+        delete from t_soldier where soldier_id = #{id}
+    </delete>
+
+    <update id="updateSoldier" parameterType="Pojo.soldier">
+        update t_soldier set soldier_name = #{soldierName},soldier_weapon = #{soldierWeapon} where soldier_id = #{soldierId}
+    </update>
+</mapper>

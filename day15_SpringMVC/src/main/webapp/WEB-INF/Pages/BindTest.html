@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/binding/test1}" method="post">
+  <input type="text" placeholder="生产日期" name="date" value="2023/04/24 20:34:50"><br>
+  <input type="text" placeholder="产品价格" name="price" value="222,234,322.2222"><br>
+  <input type="submit">提交
+</form>
+
+</body>
+</html>

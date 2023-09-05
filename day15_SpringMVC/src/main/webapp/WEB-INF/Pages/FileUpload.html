@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>fileUpload</title>
+</head>
+<body>
+<form th:action="@{/User/Register}" method="post" enctype="multipart/form-data">
+    <input type="text" name="username" value="" placeholder="账号"> <br>
+    <input type="file" name="picture" placeholder="头像"> <br>
+    <input type="submit" name="提交"> <br>
+</form>
+
+<br>
+
+
+
+</body>
+</html>

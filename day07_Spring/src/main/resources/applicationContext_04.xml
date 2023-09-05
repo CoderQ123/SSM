@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="addr" class="Bean.Address"></bean>
+    <bean id="user" class="Bean.User">
+        <property name="name" value="CoderA"></property>
+        <property name="age" value="22"></property>
+<!--        级联属性操作，必须先引入对方对象-->
+        <property name="addr" ref="addr"></property>
+<!--        给引入对象的属性赋值,就是调用属性的setter方法-->
+        <property name="addr.address" value="hb"></property>
+    </bean>
+
+<!--    注意user和user1共用一个address对象，下面设置的值会覆盖上面设置的值-->
+
+    <bean id="user1" class="Bean.User">
+        <property name="name" value="CoderA"></property>
+        <property name="age" value="22"></property>
+        <property name="addr" ref="addr"></property>
+        <property name="addr.address" value="tt"></property>
+    </bean>
+</beans>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax.html</title>
+    <script th:src="@{/static/js/axios.min.js}"></script>
+</head>
+<body>
+  <button type="button" onclick="fun1()">简单json提交</button>
+  <button type="button" onclick="fun2()">复杂json提交</button>
+  <button type="button" onclick="fun3()">复杂json提交</button>
+  <script>
+// <!--
+//
+//     data:  会将{}对象，转成JSON数据格式字符串传递，由于JSON格式必须采用请求体传输，所以method方法必须为post或者put
+//     params: 会将{}对象，转成请求参数拼接在url后面，通过url传输，所以method可以为任意方式
+//
+// -->
+      function fun1(){
+         axios({
+             url:"[[@{/submit/Json}]]",
+             method:"post",
+             data:["篮球","台球","兵乓球"]
+         }).then(response => {
+             console.log("ok");
+         });
+      }
+      function fun2(){
+        axios({
+            url:"[[@{/submit/Json2}]]",
+            method:"post",
+            data:{
+                username:"root",
+                pwd:"123456",
+                addr:{province:"湖北省",city:"鄂州市"},
+                hobby:["足球","篮球","排球"],
+                relatives:[{name:"Tom",age:22},{name:"Jack",age:23}]
+            }
+        }).then(response =>
+            alert("ok!")
+        );
+      }
+      function fun3(){
+    axios({
+        url:"[[@{/submit/Json3}]]",
+        method:"post",
+        data:{
+            username:"root",
+            pwd:"123456",
+            addr:{province:"湖北省",city:"鄂州市"},
+            hobby:["足球","篮球","排球"],
+            relatives:[{name:"Tom",age:22},{name:"Jack",age:23}]
+        }
+    }).then(response =>
+        alert("ok!")
+    );
+}
+  </script>
+</body>
+</html>

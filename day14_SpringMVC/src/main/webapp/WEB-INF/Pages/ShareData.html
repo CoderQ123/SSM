@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <base th:href="@{/}">
+    <meta charset="UTF-8">
+    <title>shareData</title>
+</head>
+<body>
+请求域：<h2 th:text="${request}"></h2>
+会话域：<h2 th:text="${session.session}"></h2>
+全局域：<h2 th:text="${application.servletContext}"></h2>
+</body>
+</html>

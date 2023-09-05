@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.OrderItemMapper">
+    <select id="getOrderItem" resultType="Bean.OrderItem">
+        select * from t_order_item
+<!--
+        四种情况
+        ①arg0 == null ,arg1 == null
+        ②arg0 != null,arg1 != null
+        ③arg0 ==null,arg1 != null
+        ④arg0 != null,arg1 ==  null
+
+        where 标签的作用，①如果内部子标签有满足条件，则添加where字句，否则不添加
+                        ②内部子标签 会存在  and or  关键字冗余现象，去除冗余关键字
+-->
+        <where>
+            <if test="arg0 != null">
+                order_id = #{arg0}
+            </if>
+            <if test="arg1 != null">
+                and item_amount > #{arg1}
+            </if>
+        </where>
+    </select>
+    <select id=""
+</mapper>

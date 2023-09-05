@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+        注意通过FactoryBean方式创建Bean对象时候，class写的是FactoryBean全类名
+        但是通过id取到的对象依然是user对象
+        首先创建FactoryBean对象，通过调用getClass方法创建User对象，然后加入容器内
+-->
+    <bean id="user" class="FactoryBean.UserFactoryBean">
+
+    </bean>
+    <bean id="sqlSessionFactory" class="FactoryBean.SqlSessionFactoryBean">
+        <property name="config" value="mybatis-config.xml"></property>
+    </bean>
+</beans>

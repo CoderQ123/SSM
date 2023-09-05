@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.UserMapper">
+    <select id="getAllUser" resultType="Bean.User">
+        select * from user
+    </select>
+<!--    当接口中是一个一个零散的值，如何传参
+        三种方式传参：arg0，arg1  ||  param1  param2  ||  @Param  给属性名加注解
+-->
+    <select id="getUser" resultType="Bean.User">
+<!--        select * from user where ${arg0} = #{arg1}-->
+<!--        select * from user where ${param1} = #{param2}-->
+        select * from user where ${column} = #{value}
+    </select>
+<!--    如果传入的参数是对象  填对象的属性名 会自动调用对应属性的getter方法-->
+    <insert id="addUser">
+        insert into user values (null,#{username},#{pwd},#{email})
+    </insert>
+<!--    插入数据，返回自增长值-->
+    <insert id="addUserRetKey" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into user values(null,#{username},#{pwd},#{email})
+    </insert>
+    
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="JDBC.properties"></properties>
+    <settings>
+        <!--        配置日志信息输出为标准日志输入-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--        配置日志信息输出通过第三方日志框架slf4j-->
+        <!--        <setting name="logImpl" value="SLF4J"/>-->
+        <!--        是否开启驼峰命名自动映射，即从经典数据库列名 A_COLUMN 映射到经典 Java 属性名 aColumn-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--        开启嵌套映射映射  -->
+        <setting name="autoMappingBehavior" value="FULL"/>
+        <!--        开启延迟加载 -->
+        <!--        <setting name="lazyLoadingEnabled" value="true"/>-->
+    </settings>
+    <environments default="demo">
+        <environment id="demo">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="EmployeeMapper.xml"/>
+    </mappers>
+</configuration>

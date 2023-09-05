@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.QuestionMapper">
+    <resultMap id="rm" type="Bean.userProfile">
+        <id column="id" property="id"></id>
+        <collection property="qPD" ofType="Bean.questionPracticeDetail">
+            <id column="qid" property="id"></id>
+        </collection>
+    </resultMap>
+<!--    采用关联查询的方式-->
+    <select id="getDetailByUniversity" resultMap="rm">
+        SELECT t1.*,t2.id qid,t2.question_id,t2.result FROM user_profile t1
+        LEFT JOIN question_practice_detail t2
+        ON t1.device_id = t2.device_id
+        WHERE t1.university IN ('浙江大学','北京大学')
+    </select>
+    
+
+    <select id="getAllByDeviceId" resultType="Bean.questionPracticeDetail">
+        select * from  question_practice_detail where device_id in (#{arg0},#{arg1},#{arg2})
+    </select>
+
+    <resultMap id="r1" type="Bean.questionPracticeDetail">
+        <id column="id" property="id"></id>
+<!--
+            property 为对象名   column 为传入第二个sql语句的参数列名，如果该列有多个值，每次传入一个，执行一次sql
+            当查询的结果里面对象需要另外一个sql查询结果填充，则采用以下select属性
+            注意：当column这列被传入第二个sql语句作为参数，不会填充到questionPracticeDetail的deviceId
+-->
+        <association property="up" column="device_id" select="Mapper.UserProfile.getUserByDeviceId"></association>
+    </resultMap>
+
+    <select id="getUserProfiles" resultMap="r1">
+        select * from question_practice_detail where  question_id = 111 and result = 'right';
+    </select>
+
+</mapper>

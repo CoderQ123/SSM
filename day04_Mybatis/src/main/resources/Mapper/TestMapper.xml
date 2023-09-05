@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.TestMapper">
+    <insert id="addTest">
+<!--        keyProperty 表示将生成的key值赋值给对象哪个属性 会调用setter方法  注意一定要写resultType-->
+<!--   当主键是字符串类型，无法使用自增长，mybatis可以传入一个唯一字符串 -->
+        <selectKey order="BEFORE" keyProperty="id" resultType="string">
+            select replace(UUID(),"-","")
+        </selectKey>
+        insert into Test1 values(#{id},#{username},#{pwd})
+    </insert>
+</mapper>

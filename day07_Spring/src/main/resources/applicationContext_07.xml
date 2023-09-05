@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+        给属性赋值，记住一个原则，基本数据类型或者字符串，直接使用value属性，
+        自定义类类型，使用<bean标签或者外部引用，其他数据类型，使用对应标签即可
+-->
+    <bean id="test" class="Bean.Test" >
+        <property name="user">
+            <bean class="Bean.User">
+                <property name="name" value="CoderA"></property>
+                <property name="age" value="22"></property>
+            </bean>
+        </property>
+        <property name="data1">
+            <array>
+                <value>hello</value>
+                <value>world</value>
+            </array>
+        </property>
+        <property name="data2" >
+            <list>
+                <bean class="Bean.User">
+                    <property name="name" value="Coder"></property>
+                    <property name="age" value="22"></property>
+                    <property name="addr">
+                        <bean class="Bean.Address">
+                            <property name="address" value="hubei"></property>
+                        </bean>
+                    </property>
+                </bean>
+            </list>
+        </property>
+        <property name="data3" >
+            <map>
+                <entry key="aaa">
+                   <bean class="Bean.User">
+                       <property name="name" value="nihao "></property>
+                   </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

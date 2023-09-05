@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="Bean.User">
+<!--
+        根据指定构造器的参数的个数确定实例化对象时候，调用哪个构造器
+        如果构造器参数为0，则代表使用默认的空参构造器
+        name:  类属性名
+        index：该属性在构造方法中参数的位置，默认从左从0开始
+        value: 想给属性赋的值
+-->
+    <constructor-arg name="name" index="0" value="CoderA"/>
+    <constructor-arg name="age" index="1" value="22"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Mapper.StudentMapper">
+    <resultMap id="studentMap" type="Bean.Student">
+        <id column="s_id" property="sId"></id>
+        <collection property="scores" ofType="Bean.Score">
+            <id column="c_id" property="cId"></id>
+        </collection>
+        <collection property="courses" ofType="Bean.Score">
+            <id column="u_id" property="uId"></id>
+        </collection>
+    </resultMap>
+    <select id="getStudentInfo" resultMap="studentMap">
+        SELECT stu.*,sco.c_id,sco.c_number,sco.u_id,cour.u_name
+        FROM student AS stu
+         LEFT JOIN score AS sco
+                   ON stu.s_id = sco.s_id
+         LEFT JOIN course AS cour
+                   ON sco.u_id = cour.u_id
+        WHERE   stu.s_id = 2
+        ORDER BY cour.u_id
+    </select>
+</mapper>

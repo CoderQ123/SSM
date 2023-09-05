@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.questionDetailMapper">
+<!--   开启二级缓存，并且设置缓存中的对象相同的实例，实例地址相同，如果值为false，则返回缓存中对象的拷贝实例，实例地址不相同-->
+<!--    <cache readOnly="false"></cache>-->
+    <resultMap id="getEasyWrongRM" type="Bean.questionDetail">
+        <id column="id" property="id"></id>
+        <collection property="questionPracticeDetails" ofType="Bean.questionPracticeDetail">
+            <id column="id" property="id"></id>
+            <association property="up" javaType="Bean.userProfile">
+                <id column="id" property="id"></id>
+            </association>
+        </collection>
+    </resultMap>
+    <select id="getEasyWrongUserInfo" resultMap="getEasyWrongRM">
+        select qpd.*,qd.difficult_level,up.* from question_detail qd
+        left join question_practice_detail qpd  on qpd.question_id = qd.question_id
+        left join user_profile up on qpd.device_id = up.device_id
+        where qd.difficult_level = 'easy' and qpd.result = 'wrong'
+        order by qpd.id asc
+    </select>
+
+
+    <select id="getQuestionDetailById" resultType="Bean.questionDetail">
+        select  *
+        from   question_detail
+        where question_id = #{arg0}
+    </select>
+</mapper>

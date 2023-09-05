@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    id 为容器中的对象创建一个唯一标识，方便后面调用
+        class 类的全限定符，方便容器通过全限定符获取Class实例，然后通过Class实例的newInstance方法创建对象
+        由于newInstance()默认调用类的空参构造器
+        所以要求：想要加入到IOC容器中的对象，必须具有默认的空参公共的构造器
+        注意：当我们在类中声明了有参构造器，不会加入默认的空参公共的构造器，需要我们显示声明空参构造器
+        1.User user = new User() 2.将对象加入容器中
+-->
+    <bean id="user" class="Bean.User">
+<!--        Bean对象属性赋值，默认调用Bean中对应属性的get和set方法-->
+        <property name="name" value="Coder_Q"></property>
+        <property name="age" value="22"></property>
+    </bean>
+    <bean id="userService" class="Service.Impl.UserServiceImpl"></bean>
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="addr" class="Bean.Address">
+        <property name="city" value="hb"/>
+    </bean>
+<!--
+        autowire自动装配：自动给Bean对象中自定义类类型属性赋值
+        byType:根据属性的类型在IOC容器查找对应的对象或者实现类的对象
+            当容器中出现同一个类两个对象的时候，根据类型查找会出现唯一Bean异常
+        byName:根据属性的名字，在IOC容器中查找Bean.id等于属性的名字的Bean对象
+-->
+
+    <bean id="student" class="Bean.Student" autowire="byType">
+        <property name="SId" value="2"/>
+        <property name="name" value="CoderA"/>
+    </bean>
+
+</beans>

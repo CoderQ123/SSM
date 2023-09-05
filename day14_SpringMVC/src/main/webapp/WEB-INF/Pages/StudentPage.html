@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+<!--    增加学生  post 存放-->
+<form method="post" action="Student">
+    <input type="text" name="id" placeholder="学生id">
+    <input type="text" name="stuName" placeholder="学生名">
+    <input type="text" name="stuPwd" placeholder="密码">
+    <input type="submit" value="添加">
+</form>
+<!--查找学生  get获取-->
+<a href="Student/2">获取id=2学生</a>
+<br>
+<!--更新学生  put更新-->
+<form method="post" action="Student">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="id" placeholder="学生id">
+    <input type="text" name="username" placeholder="学生名">
+    <input type="text" name="pwd" placeholder="密码">
+    <input type="submit" value="更新">
+</form>
+<!--删除学生  delete请求-->
+<a href="Student/1">删除id=1的学生</a>
+</body>
+</html>

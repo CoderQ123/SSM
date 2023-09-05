@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+    scope属性作用，在每次getBean时候，是共享一个bean对象，还是创建多个对象
+    singleton 默认值 单例 初始化容器时候创建对象
+    prototype 多例子 getBean时候创建多个对象
+-->
+
+    <bean id="employee" class="Bean.employee" scope="prototype" init-method="initEmployee" destroy-method="destroyEmployee">
+        <property name="eid" value="2"/>
+        <property name="did" value="22"/>
+        <property name="ename" value="fdsa"/>
+    </bean>
+
+</beans>

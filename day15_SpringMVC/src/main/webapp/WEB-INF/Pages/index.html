@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<!--    <form action="http://localhost:8081/FileServer_war_exploded/picture/upload" method="post" enctype="multipart/form-data">-->
+        <form th:action="@{/User/Register}" method="post" enctype="multipart/form-data">
+        <input type="text" name="username" value="" placeholder="账号"> <br>
+        <input type="file" name="picture" placeholder="头像"> <br>
+        <input type="submit" name="提交"> <br>
+    </form>
+
+<br>
+
+<h1 th:text="${message}"></h1>
+
+
+</body>
+</html>

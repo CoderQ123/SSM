@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    特殊值的处理，①null②> ③<-->
+    <bean id="user" class="Bean.User">
+        <property name="age">
+            <null/>
+        </property>
+<!--        &gt  >   &lt  <   -->
+<!--        <property name="name" value="&gt; &lt;"/>-->
+        <!-- 敏感符号！ > < 不想影响标签 -->
+        <property name="name">
+<!--            -->
+            <value><![CDATA[<>>>><<<<<! <!--哈哈哈哈-->]]></value>
+        </property>
+    </bean>
+</beans>
