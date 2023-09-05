@@ -19,4 +19,10 @@ public class test1 {
         fileOutputStream.close();
         System.out.println("hello");
     }
+
+    @Test
+
+    public void dummy() {
+        System.out.println("hello");
+    }
 }
