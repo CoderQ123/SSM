@@ -24,5 +24,6 @@ public class test1 {
 
     public void dummy() {
         System.out.println("hello");
+        System.out.println("hello");
     }
 }
